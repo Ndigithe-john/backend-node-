@@ -10,3 +10,7 @@ console.log(textInAdd);
 const textOutAdd = `Avacado being the best fruit i have this to say: \n ${textInAdd} \n Lets see the number of lines output`;
 fs.writeFileSync("./txt/finalOut.txt", textOutAdd);
 console.log("Final Test");
+const todaysFinal = `I want to write some data to this file to text if i got it right ${textOutAdd}`;
+fs.writeFileSync(`./txt/eightFinal.txt`, todaysFinal);
+const readTodaysFinal = fs.readFileSync("./txt/eightFinal.txt", "utf-8");
+console.log(readTodaysFinal);
