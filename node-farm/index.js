@@ -54,11 +54,20 @@ const url = require("url");
 const server = http.createServer((req, res) => {
   const pathName = req.url;
   if (pathName === "/overview") {
-    res.end("This is the overview path");
+    res.writeHead(202, {
+      "Content-type": "text/html",
+      "My-Own-Header": "Send this header",
+    });
+    res.end("<h1>This is the Overview Page </h1>");
   } else if (pathName === "/product") {
     res.end("This is the product path ");
-  } else {
+  } else if (pathName === "/") {
     res.end("Hello from the server");
+  } else {
+    res.writeHead(404, {
+      "Content-type": "text/html ",
+    });
+    res.end("<h1>Page not Found!</h1>");
   }
 });
 
