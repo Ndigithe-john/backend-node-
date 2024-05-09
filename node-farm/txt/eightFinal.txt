@@ -1,4 +1,4 @@
 I want to write some data to this file to text if i got it right Avacado being the best fruit i have this to say: 
  This is what i know about avocado: The avocado 🥑 is popular in vegetarian cuisine as a substitute for meats in sandwiches and salads because of its high fat content 😄. 
- Created on 1715247903021  
+ Created on 1715248323701  
  Lets see the number of lines output

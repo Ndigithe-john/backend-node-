@@ -18,7 +18,8 @@ const readTodaysFinal = fs.readFileSync("./txt/eightFinal.txt", "utf-8");
 console.log(readTodaysFinal);
 
 // Non-blocking, asynchronous way
-fs.readFile("./txt/start.txt", "utf-8", (err, data) => {
+fs.readFile("./txt/start.txt", "utf-8", function (err, data) {
+  if (err) return console.log(`Error occoured 💣`);
   console.log(data);
   fs.readFile(`./txt/${data}.txt`, "utf-8", (err, data1) => {
     console.log(data1);
