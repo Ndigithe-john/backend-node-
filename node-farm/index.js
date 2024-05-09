@@ -1,6 +1,8 @@
 const fs = require("fs");
 const http = require("http");
 
+const url = require("url");
+
 ///////////////////////////////////////
 //FILES
 // Blocking, synchronous way
@@ -50,7 +52,14 @@ const http = require("http");
 ////////////////////////////////////////////////////////
 //SERVER
 const server = http.createServer((req, res) => {
-  res.end("Hello from the server");
+  const pathName = req.url;
+  if (pathName === "/overview") {
+    res.end("This is the overview path");
+  } else if (pathName === "/product") {
+    res.end("This is the product path ");
+  } else {
+    res.end("Hello from the server");
+  }
 });
 
 server.listen(8000, "127.0.0.1", () => {
