@@ -1,4 +1,6 @@
 const fs = require("fs");
+
+// Blocking, synchronous way
 const textIn = fs.readFileSync("./txt/input.txt", "utf-8");
 console.log(textIn);
 const textOut = `This is what i know about avocado: ${textIn}. \n Created on ${Date.now()} `;
@@ -14,3 +16,9 @@ const todaysFinal = `I want to write some data to this file to text if i got it 
 fs.writeFileSync(`./txt/eightFinal.txt`, todaysFinal);
 const readTodaysFinal = fs.readFileSync("./txt/eightFinal.txt", "utf-8");
 console.log(readTodaysFinal);
+
+// Non-blocking, asynchronous way
+fs.readFile("./txt/start.txt", "utf-8", (err, data) => {
+  console.log(data);
+});
+console.log("Will read file first");
