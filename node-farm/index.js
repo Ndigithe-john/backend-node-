@@ -53,7 +53,7 @@ const url = require("url");
 //SERVER
 
 const replaceTemplate = (temp, product) => {
-  let output = temp.replace(/{%PRODUCTNAMES%}/g, product.productName);
+  let output = temp.replace(/{%PRODUCTNAME%}/g, product.productName);
   output = output.replace(/{%IMAGE%}/g, product.image);
   output = output.replace(/{%PRICE%}/g, product.price);
   output = output.replace(/{%FROM%}/g, product.from);
@@ -82,10 +82,10 @@ const tempProduct = fs.readFileSync(
   "utf-8"
 );
 const server = http.createServer((req, res) => {
-  const pathName = req.url;
+  const { query, pathname } = url.parse(req.url, true);
 
   //Overview page
-  if (pathName === "/" || pathName === "/overview") {
+  if (pathname === "/" || pathname === "/overview") {
     res.writeHead(200, {
       "Content-type": "text/html",
       "My-Own-Header": "Send this header",
@@ -97,11 +97,16 @@ const server = http.createServer((req, res) => {
     res.end(output);
 
     // Product page
-  } else if (pathName === "/product") {
-    res.end("This is the product path ");
+  } else if (pathname === "/product") {
+    res.writeHead(200, {
+      "Content-type": "text/html",
+    });
+    const product = productDataOject[query.id];
+    const output = replaceTemplate(tempProduct, product);
+    res.end(output);
 
     //Api
-  } else if (pathName === "/api") {
+  } else if (pathname === "/api") {
     res.writeHead(200, {
       "Content-type": "application/json",
     });
